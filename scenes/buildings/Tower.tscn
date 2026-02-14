@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/Tower.gd" id="1_dkkyi"]
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_dkkyi")
+
+[node name="Base" type="Polygon2D" parent="."]
+color = Color(0.35, 0.35, 0.38, 1)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+
+[node name="Top" type="Polygon2D" parent="."]
+position = Vector2(0, -8)
+color = Color(0.5, 0.5, 0.56, 1)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="Barrel" type="Line2D" parent="."]
+width = 6.0
+default_color = Color(0.15, 0.15, 0.18, 1)
+points = PackedVector2Array(0, -8, 0, -34)
+
+[node name="TeamBanner" type="Polygon2D" parent="."]
+position = Vector2(0, 10)
+color = Color(0.2, 0.6, 1, 1)
+polygon = PackedVector2Array(-14, -4, 14, -4, 14, 4, -14, 4)
+
+[node name="AttackRangeHint" type="Line2D" parent="."]
+modulate = Color(1, 1, 1, 0.3)
+width = 2.0
+default_color = Color(1, 1, 1, 1)
+closed = true
+points = PackedVector2Array(280, 0, 258.671, 106.57, 197.99, 197.99, 106.57, 258.671, 0, 280, -106.57, 258.671, -197.99, 197.99, -258.671, 106.57, -280, 0, -258.671, -106.57, -197.99, -197.99, -106.57, -258.671, 0, -280, 106.57, -258.671, 197.99, -197.99, 258.671, -106.57)

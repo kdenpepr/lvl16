@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/HandUI.gd" id="1_fjgmd"]
+[ext_resource type="Script" path="res://scripts/DeckSystem.gd" id="2_mj1gc"]
+[ext_resource type="Script" path="res://scripts/ElixirSystem.gd" id="3_7n4n2"]
+
+[node name="HandUI" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -260.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_fjgmd")
+
+[node name="DeckSystem" type="Node" parent="."]
+script = ExtResource("2_mj1gc")
+
+[node name="ElixirSystem" type="Node" parent="."]
+script = ExtResource("3_7n4n2")
+max_elixir = 10.0
+starting_elixir = 5.0
+regen_amount = 1.0
+regen_interval = 2.8
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ElixirContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ElixirLabel" type="Label" parent="Panel/VBoxContainer/ElixirContainer"]
+layout_mode = 2
+text = "Elixir: 5.0 / 10.0"
+
+[node name="ElixirBar" type="ProgressBar" parent="Panel/VBoxContainer/ElixirContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="CardGrid" type="GridContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="CardButton1" type="Button" parent="Panel/VBoxContainer/CardGrid"]
+custom_minimum_size = Vector2(180, 84)
+layout_mode = 2
+text = "Card A (2)"
+
+[node name="CardButton2" type="Button" parent="Panel/VBoxContainer/CardGrid"]
+custom_minimum_size = Vector2(180, 84)
+layout_mode = 2
+text = "Card B (3)"
+
+[node name="CardButton3" type="Button" parent="Panel/VBoxContainer/CardGrid"]
+custom_minimum_size = Vector2(180, 84)
+layout_mode = 2
+text = "Card C (4)"
+
+[node name="CardButton4" type="Button" parent="Panel/VBoxContainer/CardGrid"]
+custom_minimum_size = Vector2(180, 84)
+layout_mode = 2
+text = "Card D (5)"
