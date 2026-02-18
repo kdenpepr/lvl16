@@ -1,0 +1,197 @@
+[gd_scene load_steps=8 format=3 uid="uid://dw7djnrw2r4ga"]
+
+[ext_resource type="Script" path="res://scripts/Match.gd" id="1_1mpwt"]
+[ext_resource type="PackedScene" path="res://scenes/buildings/Tower.tscn" id="2_q7f88"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HandUI.tscn" id="3_hu07p"]
+[ext_resource type="Script" path="res://scripts/EnemyAI.gd" id="4_5n2a1"]
+[ext_resource type="Script" path="res://scripts/DeckSystem.gd" id="5_tg0l9"]
+[ext_resource type="Script" path="res://scripts/ElixirSystem.gd" id="6_x1k2v"]
+
+[node name="Match" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1mpwt")
+
+[node name="ArenaBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.17, 0.12, 1)
+
+[node name="EnemyHalf" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+color = Color(0.35, 0.16, 0.16, 0.85)
+
+[node name="PlayerHalf" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14, 0.2, 0.36, 0.85)
+
+[node name="LeftLane" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.2
+anchor_top = 0.0
+anchor_right = 0.4
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.9, 0.7, 0.18)
+
+[node name="RightLane" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.6
+anchor_top = 0.0
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.9, 0.7, 0.18)
+
+[node name="River" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_top = 0.43
+anchor_right = 1.0
+anchor_bottom = 0.57
+grow_horizontal = 2
+color = Color(0.2, 0.5, 0.85, 0.9)
+
+[node name="BridgeLeft" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.24
+anchor_top = 0.43
+anchor_right = 0.36
+anchor_bottom = 0.57
+color = Color(0.52, 0.42, 0.29, 1)
+
+[node name="BridgeRight" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.64
+anchor_top = 0.43
+anchor_right = 0.76
+anchor_bottom = 0.57
+color = Color(0.52, 0.42, 0.29, 1)
+
+[node name="EnemyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.4
+anchor_top = 0.05
+anchor_right = 0.6
+anchor_bottom = 0.12
+horizontal_alignment = 1
+text = "Enemy Side"
+
+[node name="PlayerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.4
+anchor_top = 0.88
+anchor_right = 0.6
+anchor_bottom = 0.95
+grow_vertical = 2
+horizontal_alignment = 1
+text = "Player Side"
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.45
+anchor_top = 0.015
+anchor_right = 0.55
+anchor_bottom = 0.07
+horizontal_alignment = 1
+text = "3:00"
+
+[node name="EnemyTowerLeft" parent="World" instance=ExtResource("2_q7f88")]
+position = Vector2(576, 162)
+team = 1
+
+[node name="EnemyTowerRight" parent="World" instance=ExtResource("2_q7f88")]
+position = Vector2(1344, 162)
+team = 1
+
+[node name="PlayerTowerLeft" parent="World" instance=ExtResource("2_q7f88")]
+position = Vector2(576, 918)
+team = 0
+
+[node name="PlayerTowerRight" parent="World" instance=ExtResource("2_q7f88")]
+position = Vector2(1344, 918)
+team = 0
+
+[node name="HandUI" parent="." instance=ExtResource("3_hu07p")]
+
+[node name="EnemyAI" type="Node" parent="."]
+script = ExtResource("4_5n2a1")
+
+[node name="DeckSystem" type="Node" parent="EnemyAI"]
+script = ExtResource("5_tg0l9")
+
+[node name="ElixirSystem" type="Node" parent="EnemyAI"]
+script = ExtResource("6_x1k2v")
+max_elixir = 10.0
+starting_elixir = 5.0
+regen_amount = 1.0
+regen_interval = 2.8
+
+[node name="GhostPreview" type="ColorRect" parent="."]
+visible = false
+z_index = 5
+custom_minimum_size = Vector2(56, 56)
+offset_right = 56.0
+offset_bottom = 56.0
+mouse_filter = 2
+color = Color(0.2, 0.85, 0.35, 0.45)
+
+[node name="ResultOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="Panel" type="PanelContainer" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.35
+anchor_top = 0.35
+anchor_right = 0.65
+anchor_bottom = 0.65
+
+[node name="VBox" type="VBoxContainer" parent="ResultOverlay/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResultLabel" type="Label" parent="ResultOverlay/Panel/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "WIN"
+
+[node name="BackToMenuButton" type="Button" parent="ResultOverlay/Panel/VBox"]
+layout_mode = 2
+text = "Back to Menu"

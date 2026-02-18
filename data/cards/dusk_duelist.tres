@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://data/CardData.gd" id="1_0a5"]
+
+[resource]
+script = ExtResource("1_0a5")
+id = "dusk_duelist"
+display_name = "Dusk Duelist"
+cost = 3
+unit_scene_path = "res://scenes/units/UnitBase.tscn"
+lane_preference = "right"
+description = "A precise melee specialist that excels in single-target fights."
